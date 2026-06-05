@@ -1,0 +1,144 @@
+<div class="card">
+  <h4><i class="fas fa-users"></i> Total Users</h4>
+  <h1><%= users %></h1>
+</div>
+
+<div class="card">
+  <h4><i class="fas fa-money-bill-wave"></i> Total Transactions</h4>
+  <h1><%= transactions %></h1>
+</div>
+
+<h2 style="margin-bottom: 20px;">Dashboard</h2>
+
+<div class="grid">
+
+  <div class="card">
+    <h4>Total Users</h4>
+    <h1><%= users %></h1>
+  </div>
+
+  <div class="card">
+    <h4>Total Transactions</h4>
+    <h1><%= transactions %></h1>
+  </div>
+
+</div>
+
+<!-- Charts Row -->
+<div class="grid" style="margin-top:20px;">
+
+  <div class="card">
+      <div style="height:300px;">
+  <canvas id="barChart"></canvas>
+</div>
+  </div>
+
+
+
+
+  <div class="card">
+    <h3>Spending Breakdown</h3>
+    <div style="height:300px;">
+    <canvas id="pieChart"></canvas>
+    </div>
+  </div>
+
+</div>
+
+<div class="card">
+  <h3>Monthly Trend</h3>
+  <div style="height:300px;"> 
+
+  <canvas id="lineChart"></canvas>
+  </div>
+</div>  
+
+<script>
+  // ================= BAR CHART =================
+  fetch("/admin/analytics/summary")
+    .then(res => res.json())
+    .then(data => {
+      new Chart(document.getElementById("barChart"), {
+        type: "bar",
+        data: {
+          labels: data.map(d => d.type),
+          datasets: [{
+            label: "Amount",
+            data: data.map(d => d.total),
+            borderRadius: 8
+          }]
+        },
+        options: {
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              grid: { display: false }
+            },
+            x: {
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    });
+
+  // ================= PIE (DONUT) =================
+  fetch("/admin/analytics/categories")
+    .then(res => res.json())
+    .then(data => {
+      new Chart(document.getElementById("pieChart"), {
+        type: "doughnut",
+        data: {
+          labels: data.map(d => d.category_id || "Others"),
+          datasets: [{
+            data: data.map(d => d.total)
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: "70%",
+          plugins: {
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      });
+    });
+
+  // ================= LINE CHART =================
+  fetch("/admin/analytics/monthly")
+    .then(res => res.json())
+    .then(data => {
+      new Chart(document.getElementById("lineChart"), {
+        type: "line",
+        data: {
+          labels: data.map(d => d.month),
+          datasets: [{
+            label: "Monthly Spending",
+            data: data.map(d => d.total),
+            tension: 0.4,
+            fill: true
+          }]
+        },
+        options: {
+          plugins: {
+            legend: { display: false }
+          },
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              grid: { display: false }
+            },
+            x: {
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    });
+</script>

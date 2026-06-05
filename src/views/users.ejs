@@ -1,0 +1,35 @@
+<h2 style="margin-bottom: 20px;">Users</h2>
+
+<div class="card">
+    <table>
+        <tr>
+            <th>#</th>
+            <th><i class="fas fa-user"></i> Name</th>
+            <th><i class="fas fa-envelope"></i> Email</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+
+        <% users.forEach((user, index)=> { %>
+            <tr>
+                <td>
+                    <%= index + 1 %>
+                </td>
+                <td>
+                    <%= user.name %>
+                </td>
+                <td>
+                    <%= user.email %>
+                </td>
+                <td>
+                    <%= user.role %>
+                </td>
+                <td>
+                    <form action="/admin/users/delete/<%= user.id %>" method="POST">
+                        <button class="btn-delete">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            <% }) %>
+    </table>
+</div>

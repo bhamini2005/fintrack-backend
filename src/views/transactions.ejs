@@ -1,0 +1,38 @@
+<h2 style="margin-bottom: 20px;">Transactions</h2>
+
+<div class="card">
+    <table>
+        <tr>
+            <th>#</th>
+            <th><i class="fas fa-user"></i> User</th>
+            <th><i class="fas fa-exchange-alt"></i> Type</th>
+            <th>Amount</th>
+            <th>Method</th>
+            <th>Action</th>
+        </tr>
+
+        <% transactions.forEach((t, index)=> { %>
+            <tr>
+                <td>
+                    <%= index + 1 %>
+                </td>
+                <td>
+                    <%= t.user_name %>
+                </td>
+                <td class="<%= t.type === 'income' ? 'income' : 'expense' %>">
+                    <%= t.type %>
+                </td>
+                <td>₹ <%= t.amount %>
+                </td>
+                <td>
+                    <%= t.payment_method %>
+                </td>
+                <td>
+                    <form action="/admin/transactions/delete/<%= t.id %>" method="POST">
+                        <button class="btn-delete"><i class="fas fa-trash"></i>Delete</button>
+                    </form>
+                </td>
+            </tr>
+            <% }) %>
+    </table>
+</div>

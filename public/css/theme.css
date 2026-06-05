@@ -1,0 +1,205 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  display: flex;
+  background: #f1f5f9;
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  position: fixed;
+  height: 100vh;
+  background: #0f172a;
+  transition: transform 0.3s ease;
+}
+
+/* hide on mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+  color: #38bdf8;
+}
+
+.sidebar a {
+  display: block;
+  color: #94a3b8;
+  padding: 10px;
+  margin: 5px 0;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.sidebar a:hover {
+  background: #1e293b;
+  color: white;
+}
+.sidebar a i {
+  margin-right: 10px;
+}
+
+/* Main */
+.main {
+  margin-left: 240px;
+  width: 100%;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .main {
+    margin-left: 0;
+  }
+}
+
+/* Topbar */
+.topbar {
+  height: 60px;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.topbar h3 {
+  font-size: 18px;
+}
+
+.topbar a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+/* Content */
+.content {
+  padding: 20px;
+}
+
+/* Cards */
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 12px;
+  background: #f8fafc;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+tr:hover {
+  background: #f1f5f9;
+}
+
+/* Badges */
+.income {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.expense {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* Button */
+.btn-delete {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background: #b91c1c;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Hide hamburger by default (desktop) */
+#menuBtn {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Show only on mobile */
+@media (max-width: 768px) {
+  #menuBtn {
+    display: block;
+  }
+}
