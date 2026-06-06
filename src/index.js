@@ -27,7 +27,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://fintrack-iota-umber.vercel.app",
+      "fintrack-app-expense.vercel.app",
       ],
     credentials: true,
   })
