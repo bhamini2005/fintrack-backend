@@ -27,7 +27,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "fintrack-app-expense.vercel.app",
+      "https://fintrack-app-expense.vercel.app",
       ],
     credentials: true,
   })
